@@ -33,7 +33,7 @@ function setup() {
 
   addfeed=createButton("Alimentar o cão");
   addfeed.position(600,95);
-  addfeed.mousePressed(addfeed);
+  addfeed.mousePressed(feedDog);
 }
 
 function draw() {
@@ -66,6 +66,10 @@ function feedDog(){
   }else{
     foodObj.updateFoodStock(food_stock_val -1);
   }
+  database.ref("/").update({
+    Food:foodObj.getFoodStock(),
+    FeedTime:hour()
+  })
 
 }
 
